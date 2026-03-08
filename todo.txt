@@ -1,0 +1,1 @@
+ignore sit rates for split rounds like 1-1 in a rr

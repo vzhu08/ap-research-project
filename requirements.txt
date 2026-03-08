@@ -1,0 +1,8 @@
+mechanicalsoup
+pandas
+beautifulsoup4
+lxml
+tqdm
+matplotlib
+scipy
+html5lib
