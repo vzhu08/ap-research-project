@@ -1,0 +1,908 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<meta http-equiv="content-language" content="en">
+
+
+
+
+			<link rel="stylesheet" type="text/css" href="/lib/css/reset.css">
+			<link rel="stylesheet" type="text/css" href="/lib/css/jqueryui.css">
+			<link rel="stylesheet" type="text/css" href="/lib/css/fonts/fonts.css">
+			<link rel="stylesheet" type="text/css" href="/lib/css/select2.min.css">
+			<link rel="stylesheet" type="text/css" href="/lib/css/uniform.css">
+			<link rel="stylesheet" type="text/css" href="/lib/css/alertify.min.css">
+			<link rel="stylesheet" type="text/css" href="/lib/css/alertify-bootstrap.min.css">
+
+				<link rel="stylesheet" type="text/css" href="/lib/css/tabroom.v44.css">
+
+
+
+			<title>
+
+
+				Tabroom.com
+			</title>
+				<script type="text/javascript" src="/lib/javascript/tabroom.v48.min.js"></script>
+
+			<script>
+
+				function toggleMobileMenu() {
+					$(`.menu`).toggleClass('nothidden');
+					fixVisual();
+				}
+
+				function toggleSearch() {
+					$(`#mobileSearch`).toggleClass('hidden');
+					$(`input#searchtext`).focus();
+				}
+
+				$(".alert").on('click', function(e){
+					e.preventDefault();
+					var href = this.href;
+					alertify.confirm("Are you sure?", function (e) {
+						if (e) {
+							window.location.href = href;
+						}
+					});
+				});
+
+
+					function updateLastAccess() {
+
+						const last = new Date('2026-04-17T01:14:27Z');
+						const dateLimit  = new Date();
+						dateLimit.setHours(dateLimit.getHours() - 2 );
+						const url = 'https://masonapi.tabroom.com/v1/user/updateLastAccess';
+
+						if (Number.isNaN(last) || last < dateLimit) {
+
+							$.ajax({
+								url,
+								type : 'GET',
+								crossDomain : true,
+
+								xhrFields: {
+									withCredentials: true
+								},
+								success: (message) => {
+									console.log(message);
+								},
+								error : (errmsg) => {
+									console.log(errmsg);
+								}
+							});
+						}
+					};
+
+
+				$(document).ready(function(){
+
+					updateLastAccess();
+
+					// put the focus on the first editable element.
+					$('*:input:enabled:visible:not(.notfirst):not(input[type="submit"]):first').focus();
+					$('.starthere').focus();
+
+					// Control-s gives you the search box
+					Mousetrap.bind('mod+s', function(e) {
+						$('#searchtext').focus();
+						return false;
+					});
+
+					// Sets up the little arrows to close and open the sidebars
+					$(".menu").prepend("<div class='shade openshade fa fa-forward'></div>");
+					$("#content").prepend("<div class='hidden shade closedshade fa fa-backward'></div>");
+
+					$(".shade").click( function() {
+						$(".menu").toggleClass("hidden");
+						$(".closedshade").toggleClass("hidden");
+						$(".main").toggleClass("mainfull");
+						$(".tabad_carousel").toggleClass("tabad_full");
+					});
+
+					// Scales any text to the size of its parent element that
+					// wants that
+					$(".scalefont").bigtext();
+
+					// adds zebra striping to elements, and resizes inputs to
+					// the size of their parent
+					fixVisual();
+				});
+			// Display notifications
+
+			$(document).ready(function() {
+
+				alertify.set('notifier','position', 'bottom-left');
+				alertify.defaults.transition   = "slide";
+				alertify.defaults.theme.ok     = "btn btn-primary";
+				alertify.defaults.theme.cancel = "btn btn-danger";
+				alertify.defaults.theme.input  = "form-control";
+
+
+
+
+
+
+
+
+
+			});
+			</script>
+
+
+			<meta property="og:image" content="http://www.tabroom.com/lib/images/nsda-blue.png">
+
+			<link rel="manifest" href="/index/manifest.mhtml">
+
+	<script src="/lib/javascript/onesignal/OneSignalSDK.page.es6.js?v=160300" defer=""></script><style>body.tablesorter-disableSelection { -ms-user-select: none; -moz-user-select: -moz-none;-khtml-user-select: none; -webkit-user-select: none; user-select: none; }.tablesorter-resizable-container { position: relative; height: 1px; }.tablesorter-resizable-handle { position: absolute; display: inline-block; width: 8px;top: 1px; cursor: ew-resize; z-index: 3; user-select: none; -moz-user-select: none; }</style><style id="bigtext-style">.bigtext * { white-space: nowrap; } .bigtext > * { display: block; }
+.bigtext .bigtext-exempt, .bigtext .bigtext-exempt * { white-space: normal; }</style><link rel="stylesheet" href="https://onesignal.com/sdks/web/v16/OneSignalSDK.page.styles.css?v=2"></head>
+	<body><div id="cite-container" class="cite-container-right"><div id="cite-close">×</div><div id="cite-min">–</div><div id="cite-rating" class="cite-red"><span>D-</span></div><br><div id="cite-content">null xx [No Author, "Tabroom.com", xx-xx-xxxx, No Publication, https://www.tabroom.com/index/tourn/results/index.mhtml, accessed 4-16-2026] /vzhu</div></div>
+		<div id="overlay">
+			<div id="header">
+				<div id="headerarch">
+					<span id="logo" title="I messed with Texas.
+And survived.">
+						<a tabindex="-1" href="/index/index.mhtml">
+							<img src="/lib/images/tabroom-logo.png" alt="Tabroom.com by the National Speech and Debate Association">
+						</a>
+					</span>
+
+					<span id="toprow" class="grow">
+
+
+							<a tabindex="-1" class="fa fa-2x fa-search loginicons smallsearch" onclick="toggleSearch();" ;="" id="mobile_search" alt="Search Tournaments" title="Search Tournaments"></a>
+
+
+
+
+								<a tabindex="-1" href="/user/login/logout.mhtml" class="fa fa-2x fa-sign-out loginicons" id="tabroom_logout" alt="Log Out of Tabroom" title="Log Out of Tabroom"></a>
+								<a tabindex="-1" href="/user/login/profile.mhtml" class="fa fa-2x fa-user loginicons" id="tabroom_profile" alt="Tabroom Account Profile" title="Tabroom Account Profile"></a>
+								<a tabindex="-1" href="/user/home.mhtml" id="tabroom_homescreen loginicons" class="fa fa-2x fa-home" alt="Tabroom Home Screen" title="Tabroom Home Screen"></a>
+									<a tabindex="-1" id="tabroom_inbox" href="/inbox/" class="fa fa-sm fa-envelope borderright orangetext" alt="Tabroom Inbox" title="Tabroom Inbox"><span id="inbox_count" class="">15</span>
+	</a>
+
+
+	<script>
+
+		$(document).ready(function () {
+			youveGotMail();
+			setInterval(youveGotMail, 30000);
+		});
+
+		function youveGotMail() {
+
+			$.ajax({
+				type                : 'GET',
+				url                 : 'https://masonapi.tabroom.com/v1/user/inbox/unread',
+				crossDomain         : true,
+				xhrFields           : {
+					withCredentials : true
+				},
+				error: (data, status, metadata) => {
+					console.log(data);
+				},
+				success: (data, status, metadata) => {
+					if (data > 0) {
+						$(`#tabroom_inbox`).addClass('orangetext');
+						$(`#inbox_count`).removeClass('hidden');
+						$(`#inbox_count`).html(data);
+					} else {
+						$(`#tabroom_inbox`).removeClass('orangetext');
+						$(`#inbox_count`).addClass('hidden');
+					}
+				}
+			});
+		}
+
+	</script>
+
+
+
+							<a tabindex="-1" href="/user/home.mhtml" id="tabroom_edlee" class="noborder padvert">
+									strathhavenyz@gmail.com
+							</a>
+
+
+
+							<span class="searchfilter">
+
+								<form action="/index/search.mhtml" method="post">
+
+								<input type="hidden" name="tourn_id" value="">
+
+								<input type="hidden" name="caller" value="/index/tourn/results/index.mhtml">
+									<span id="search" class="full flexrow" title="Search for tournaments">
+										<span class="grow fourfifths nospace padright">
+											<input type="text" name="search" placeholder="SEARCH TOURNAMENTS" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" id="searchtext" class="notfirst noresize" tabindex="-1">
+										</span>
+										<span class="centeralign">
+											<button type="submit" class="fa fa-2x fa-search loginicons smallsearch"> </button>
+										</span>
+									</span>
+								</form>
+							</span>
+
+
+						<span id="helpbutton" title="Tabroom Help" class="padleft">
+							<a tabindex="-1" href="http://docs.tabroom.com" target="_blank" class="fa fa-question-circle fa-2x">
+							</a>
+						</span>
+
+
+	<a id="push-bell" tabindex="-1" class="fa fa-2x fa-bell redtext" alt="Tabroom Notifications" onclick="showPushLogin();" ;="" title="You will not receive Tabroom notifications on this device.  Click to subscribe"></a>
+
+	<div id="push-overlay" class="hidden" onclick="hidePushLogin();">
+
+	<div id="push-subscribe" class="centeralign" style="display: none;" onclick="hidePushLogin();">
+		<span class="nospace ninetenths hidden" id="push-blocked">
+			<p class="biggish semibold leftalign blueborderbottom">
+				Your Browser Is Blocking Us
+			</p>
+
+			<p class="leftalign">
+				An extension or ad-blocker is blocking our ability to send you
+				blast notifications on this browser.  Please disable any such
+				extensions if you want to get Tabroom notifications here.
+			</p>
+
+			<p>
+				<span class="fourfifths leftalign">
+				<span class="redtext semibold">NEW: ON iPHONES OR iPADS:</span>
+					Click the Share button above, and select "Add to Home
+					Screen." Then launch Tabroom from that icon on your home
+					screen, and you can click this bell and get notifications!
+					After setting up notifications you do NOT need to launch
+					Tabroom from that icon again.
+				</span>
+
+				<span class="fifth centeralign" style="max-width: 64px;">
+					<img src="/lib/images/ios-share.jpg" style="width: 100%; height: 100%;">
+					<span class="full centeralign semibold bluetext">
+						Share Button
+					</span>
+				</span>
+
+			</p>
+		</span>
+
+		<span class="hidden nospace ninetenths" id="push-impossible">
+
+			<p class="biggish semibold leftalign blueborderbottom">
+				Your browser is blocking notifications
+			</p>
+
+			<p>
+				To send notifications to this device, you must allow Tabroom to
+				send them to you. This browser has been configured to block
+				notifications.
+			</p>
+
+			<p>
+				On most browsers, fixing this requires you to it the
+				<img src="/lib/images/url_settings.png" height="24">
+				icon above (next to the URL) and click the notifications settings.
+			</p>
+		</span>
+
+		<span class="nospace ninetenths" id="push-permission">
+			<p class="biggish semibold leftalign blueborderbottom">
+				Browser permission required
+			</p>
+
+			<p>
+				To send notifications to this device, you must allow
+				Tabroom to send them to you.
+			</p>
+
+			<p>
+				If this button does not prompt you to allow notifications
+				above, then you have blocked this site (or all sites) from
+				notifications, and will have to correct it in your browser
+				settings.
+			</p>
+
+			<div class="full rightalign">
+				<span class="half centeralign">
+					<button class="medium orange" onclick="OneSignal.Notifications.requestPermission();">Allow Blasts</button>
+				</span>
+			</div>
+
+		</span>
+
+		<span class="hidden nospace ninetenths" id="push-form">
+			<p class="biggish semibold leftalign blueborderbottom">
+				Enable Tabroom Blasts
+			</p>
+
+			<p>
+				Most cell providers no longer allow Tabroom to text our users
+				for free. But now, you can subscribe to get your Tabroom
+				blasts on this browser. Web Blasts work on both mobile and
+				desktop devices.
+			</p>
+
+			<div class="full rightalign">
+				<span class="half centeralign">
+					<div id="toprow-push-box" class="onesignal-customlink-container"><button class="onesignal-reset onesignal-customlink-subscribe medium button state-unsubscribed" type="button" style="background-color: var(--dark-red); color: var(--background-white);">Subscribe This Browser</button></div>
+				</span>
+			</div>
+		</span>
+	</div>
+	</div>
+
+
+		<script src="/lib/javascript/onesignal/OneSignalSDK.page.js" defer=""></script>
+
+		<script>
+
+			window.OneSignalDeferred = window.OneSignalDeferred || [];
+
+			OneSignalDeferred.push(async function(OneSignal) {
+
+				const tabroomId = "601838";
+
+				const reply = await OneSignal.init({
+					appId                        : "cebdea60-9d8d-4541-b1d2-785fd82d163b",
+					safari_web_id                : "web.onesignal.auto.3b385de2-9d64-4c4d-bcc9-f67f460e32ab",
+					autoResubscribe              : true,
+					persistNotification          : false,
+					allowLocalhostAsSecureOrigin : true,
+					notifyButton : {
+						enable : false,
+					},
+					welcomeNotification : {
+						title   : 'Your Tabroom Blasts Enabled!',
+						message : 'Tabroom blasts for strathhavenyz@gmail.com will now arrive looking like this message. If you want to disable them on this device, go to Tabroom in your browser (or click a blast notification) and click the green bell in the top right corner of any Tabroom screen.',
+						url     : 'https://www.tabroom.com/user/home.mhtml'
+					},
+					promptOptions: {
+						customlink: {
+							enabled : true,
+							style   : 'button',
+							size    : 'medium',
+							color   : {
+								button : 'var(--dark-red)',
+								text   : 'var(--background-white)',
+							},
+							text: {
+								subscribe   : 'Subscribe This Browser',
+								unsubscribe : 'Unsubscribe This Browser',
+							}
+						},
+						autoPrompt : true,
+						delay : {
+							pageViews : 3,
+							timeDelay : 30
+						},
+						unsubscribeEnabled: true,
+					},
+				});
+
+				if (OneSignal.User) {
+
+					if (OneSignal.User.externalId !== tabroomId) {
+						//console.log(`Tabroom User ID mismatch.  Logging in as ${tabroomId} instead of ${OneSignal.User.externalId}`);
+						await OneSignal.login(tabroomId);
+						const addSession = await OneSignal.User.addAlias('TabroomSession', '11943435');
+					}
+
+					let subscriptionId = OneSignal.User.PushSubscription.id;
+					const sessionPushId = '';
+
+					//console.log(`Checking subID ${subscriptionId} against the session ID `);
+
+					if (!sessionPushId && OneSignal.User.PushSubscription.optedIn) {
+
+						const subscriptionData = await $.ajax({
+							type        : 'GET',
+							url         : `https://masonapi.tabroom.com/v1/user/push/show/${tabroomId}/${subscriptionId}`,
+							crossDomain : true,
+							xhrFields: {
+								withCredentials: true
+							},
+						});
+
+						console.log(`Subscription is`);
+						console.log(subscriptionData);
+
+						if (subscriptionData.enabled === false) {
+							OneSignal.User.PushSubscription.optOut();
+							console.log(`Subscription status is now ${OneSignal.User.PushSubscription.optedIn} `);
+						}
+
+					} else if (subscriptionId !== sessionPushId) {
+
+						//console.log(`Updating subscription ID to push/sync`);
+
+						await $.ajax({
+							type : 'POST',
+							data : { subscriptionId },
+							url  : `https://masonapi.tabroom.com/v1/user/push/sync`,
+							crossDomain : true,
+							xhrFields: {
+								withCredentials: true
+							},
+						});
+					}
+
+					if (OneSignal.User.PushSubscription.optedIn) {
+
+						const now = new Date();
+						const sessionActive = new Date('2026-04-17T01:14:27.000Z');
+
+						//console.log(`Session active last at ${sessionActive}`);
+						//console.log(`Now it is ${now}`);
+
+						sessionActive.setHours(sessionActive.getHours() + 2);
+
+						if (sessionActive < now) {
+							// Renew the session every two hours to extend it another 48
+							//console.log('Renewing session for another 2 hours');
+
+							await $.ajax({
+								type : 'POST',
+								data : { subscriptionId },
+								url  : `https://masonapi.tabroom.com/v1/user/push/sync`,
+								crossDomain : true,
+								xhrFields: {
+									withCredentials: true
+								},
+							});
+						}
+
+						const Promises = [];
+
+						// Tags are on the User level.
+						const tags = OneSignal.User.getTags();
+						if (tags['TabroomEmail'] !== 'strathhavenyz@gmail.com') {
+							const addEmail = OneSignal.User.addTag('TabroomEmail', 'strathhavenyz@gmail.com');
+							Promises.push(addEmail);
+						}
+					}
+
+					const permChanger = (event) => {
+						if (event?.current?.optedIn) {
+							OneSignal.Notifications.permission = true;
+							permsGood();
+						} else {
+							permsBad();
+						}
+					}
+
+					const subChanger = (event) => {
+
+						if (event?.current?.id) {
+
+							$.ajax({
+								type        : 'POST',
+								data        : { id: event.current.id, sessionId: 11943435 },
+								url         : `https://masonapi.tabroom.com/v1/user/push/${ subscriptionId }/true`,
+								crossDomain : true,
+								xhrFields: {
+									withCredentials: true
+								},
+							});
+						}
+
+						if (event?.current?.optedIn) {
+							bellGood();
+						} else {
+							bellBad();
+						}
+					};
+
+					checkPerms(OneSignal);
+					OneSignal.User.PushSubscription.addEventListener("change", subChanger);
+					OneSignal.Notifications.addEventListener("permissionChange", permChanger);
+				}
+			});
+
+			const checkPerms = async (OneSignal) => {
+
+				const supported = OneSignal.Notifications.isPushSupported();
+				const permission = OneSignal.Notifications.permission;
+				const optedIn = OneSignal.User.PushSubscription.optedIn;
+
+				if (!('Notification' in window)) {
+					permsImpossible();
+				} else if (permission && optedIn) {
+					permsGood();
+					bellGood();
+				} else if (permission) {
+					permsGood();
+					bellBad();
+				} else {
+					permsBad();
+					bellBad();
+				}
+			};
+
+			function showPushLogin() {
+				$(`#push-overlay`).removeClass('hidden');
+				$(`#push-subscribe`).slideDown({
+					duration  : 300,
+					direction : 'down',
+					complete  : function() {
+						$(`#push-bell`).addClass('pushed');
+					},
+				});
+			};
+
+			function hidePushLogin() {
+				$(`#push-subscribe`).slideUp(300, function() {
+					$(`#push-overlay`).addClass('hidden');
+					$(`#push-bell`).removeClass('pushed');
+				});
+			};
+
+			function permsImpossible() {
+				$(`#push-blocked`).addClass('hidden');
+				$(`#push-permission`).addClass('hidden');
+				$(`#push-form`).addClass('hidden');
+				$(`#push-impossible`).removeClass('hidden');
+			}
+
+			function permsGood() {
+				$(`#push-blocked`).addClass('hidden');
+				$(`#push-permission`).addClass('hidden');
+				$(`#push-impossible`).addClass('hidden');
+				$(`#push-form`).removeClass('hidden');
+			}
+
+			function permsBad() {
+				$(`#push-blocked`).addClass('hidden');
+				$(`#push-permission`).removeClass('hidden');
+				$(`#push-impossible`).addClass('hidden');
+				$(`#push-form`).addClass('hidden');
+			}
+
+			function bellBad() {
+				$(`#push-bell`).addClass('redtext');
+				$(`#push-bell`).removeClass('greentext');
+				$(`#push-bell`).attr('title', "You will not receive Tabroom notifications on this device.  Click to subscribe");
+			}
+
+			function bellGood() {
+				$(`#push-bell`).removeClass('redtext');
+				$(`#push-bell`).addClass('greentext');
+				$(`#push-bell`).attr('title', "You are receiving Tabroom notifications on this device.  Click to unsubscribe");
+			}
+
+		</script>
+
+
+
+
+					</span>
+				</div>
+
+					<div class="full nospace padrightless italic rightalign onlysmall">
+						<a tabindex="-1" href="/user/home.mhtml" id="mobile_email" class="noborder padvertless lightyellowtext smaller">strathhavenyz@gmail.com</a>
+					</div>
+
+
+					<div class="centeralign hidden" id="mobileSearch">
+						<div class="ninetenths leftalign">
+
+							<form action="/index/search.mhtml" method="post">
+
+							<input type="hidden" name="caller" value="/index/tourn/results/index.mhtml">
+								<span id="mobile_searchbox" class="full flexrow blueborder" title="Search for tournaments">
+									<span class="grow fourfifths padright">
+										<input type="text" name="search" placeholder="Search tournaments by name" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" id="mobile_searchtext" class="notfirst" tabindex="-1">
+									</span>
+									<span class="centeralign nospace">
+										<button type="submit" class="fa fa-2x fa-search loginicons smallsearch">
+										</button>
+									</span>
+								</span>
+							</form>
+						</div>
+					</div>
+
+				<div class="flexrow menuright">
+
+				<span id="menus">
+
+	<ul id="nav">
+
+		<li class="top">
+			<a class="centeralign top_link" href="/" title="Home">
+				<span class="down text">
+					Home
+				</span>
+				<span class="down icon fa fa-home"></span>
+			</a>
+		</li>
+
+		<li class="top">
+
+			<a class="centeralign top_link" href="/index/circuits.mhtml" title="Circuits">
+				<span class="down text">
+					Circuits
+				</span>
+				<span class="down icon fa fa-circle-o-notch"></span>
+			</a>
+		</li>
+
+		<li class="top">
+			<a class="centeralign top_link" href="/index/results/" title="Results">
+				<span class="down text">
+					Results
+				</span>
+				<span class="down icon fa fa-trophy"></span>
+			</a>
+		</li>
+
+		<li class="top">
+			<a class="centeralign top_link" href="/index/paradigm.mhtml" title="Results">
+				<span class="down text">
+					Paradigms
+				</span>
+				<span class="down icon fa fa-gavel"></span>
+			</a>
+		</li>
+
+		<li class="top">
+			<a class="centeralign top_link" href="/index/help.mhtml" title="Help">
+				<span class="down text">
+					Help
+				</span>
+				<span class="down icon fa fa-info"></span>
+			</a>
+		</li>
+
+		<li class="top">
+			<a class="centeralign top_link" href="/index/about.mhtml" title="About">
+				<span class="down text">
+					About
+				</span>
+				<span class="down icon fa fa-book"></span>
+			</a>
+		</li>
+
+	</ul>
+
+
+				</span>
+
+				<span class="hamburger">
+					<a class="menuburger fa fa-xl fa-bars" onclick="toggleMobileMenu();"></a>
+				</span>
+
+				</div>
+
+			</div>
+
+
+
+	<div id="wrapper">
+		<div id="content"><div class="hidden shade closedshade fa fa-backward"></div>
+
+	<div class="main">
+
+
+	<h2 class="centeralign marno">
+		54th Annual Tournament of Champions
+	</h2>
+
+	<h5 class="full centeralign marno">
+		2026
+		—
+		Lexington,
+		KY/US
+	</h5>
+
+
+
+
+
+
+		<ul id="tabnav">
+
+			<li class="">
+				 <a href="/index/tourn/index.mhtml?tourn_id=36156">Invite</a>
+			</li>
+
+
+
+				<li class="">
+					 <a href="/index/tourn/fields.mhtml?tourn_id=36156">Entries</a>
+				</li>
+
+				<li class="
+				">
+					 <a href="/index/tourn/judges.mhtml?tourn_id=36156">Judges</a>
+				</li>
+
+
+				<li class="">
+					 <a href="/index/tourn/postings/index.mhtml?tourn_id=36156">Pairings</a>
+				</li>
+
+				<li class="">
+					 <a href="/index/tourn/updates/index.mhtml?tourn_id=36156">Live Updates</a>
+				</li>
+
+				<li class="selected">
+					 <a href="/index/tourn/results/index.mhtml?tourn_id=36156">Results</a>
+				</li>
+
+
+		</ul>
+
+
+
+			<h4>Informative Speaking Results</h4>
+
+
+	</div>
+
+
+	<div class="menu"><div class="shade openshade fa fa-forward"></div>
+		<div class="sidenote">
+			<h4>Event Results</h4>
+
+			<form action="index.mhtml" method="post">
+
+			<input type="hidden" name="tourn_id" value="36156">
+
+				<div class="row centeralign even">
+					<span class="threequarters">
+					<select name="event_id" class="fixedmost select2-hidden-accessible" onchange="this.form.submit();" data-select2-id="select2-data-1-5p1a" tabindex="-1" aria-hidden="true">
+							<option value="339600">Congressional Debate</option>
+							<option value="339601">Dramatic Interpretation</option>
+							<option value="339602">Duo Interpretation</option>
+							<option value="339603">Extemporaneous Speaking</option>
+							<option value="339604">Humorous Interpretation</option>
+							<option value="339605" selected="" data-select2-id="select2-data-3-bea9">Informative Speaking</option>
+							<option value="339606">Lincoln-Douglas</option>
+							<option value="339607">Oral Interpretation</option>
+							<option value="339608">Original Oratory</option>
+							<option value="339609">Policy Debate</option>
+							<option value="339610">Program Oral Interpretation</option>
+							<option value="339611">Public Forum Gold</option>
+							<option value="339612">Public Forum Silver (Online)</option>
+							<option value="339613">World Schools</option>
+					</select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="select2-data-2-vcov" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-event_id-t6-container" aria-controls="select2-event_id-t6-container"><span class="select2-selection__rendered" id="select2-event_id-t6-container" role="textbox" aria-readonly="true" title="Informative Speaking">Informative Speaking</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+
+					</span>
+
+					<span class="quarter">
+						<input type="submit" value="Go" class="thin">
+					</span>
+				</div>
+			</form>
+		</div>
+
+		<div class="sidenote">
+
+				<h4>INFO-A Results</h4>
+
+
+                        <a class="blue full nowrap" href="/index/tourn/results/event_results.mhtml?tourn_id=36156&amp;result_id=452974">
+                            Final Places
+                        </a>
+
+
+                        <a class="blue full nowrap" href="/index/tourn/results/event_results.mhtml?tourn_id=36156&amp;result_id=452982">
+                            Prelim Seeds
+                        </a>
+						<a class="blue full nowrap" href="/index/tourn/results/round_results.mhtml?tourn_id=36156&amp;round_id=1517696">
+
+							<span class="half padno marno semibold">
+								Finals
+							</span>
+							<span class="half rightalign nowrap padno marno">
+								Round results
+							</span>
+						</a>
+						<a class="blue full nowrap" href="/index/tourn/results/round_results.mhtml?tourn_id=36156&amp;round_id=1363996">
+
+							<span class="half padno marno semibold">
+								Semifinals
+							</span>
+							<span class="half rightalign nowrap padno marno">
+								Round results
+							</span>
+						</a>
+						<a class="blue full nowrap" href="/index/tourn/results/round_results.mhtml?tourn_id=36156&amp;round_id=1517695">
+
+							<span class="half padno marno semibold">
+								Quarterfinals
+							</span>
+							<span class="half rightalign nowrap padno marno">
+								Round results
+							</span>
+						</a>
+						<a class="blue full nowrap" href="/index/tourn/results/round_results.mhtml?tourn_id=36156&amp;round_id=1363994">
+
+							<span class="half padno marno semibold">
+								Round 5
+							</span>
+							<span class="half rightalign nowrap padno marno">
+								Round results
+							</span>
+						</a>
+						<a class="blue full nowrap" href="/index/tourn/results/round_results.mhtml?tourn_id=36156&amp;round_id=1363993">
+
+							<span class="half padno marno semibold">
+								Round 4
+							</span>
+							<span class="half rightalign nowrap padno marno">
+								Round results
+							</span>
+						</a>
+						<a class="blue full nowrap" href="/index/tourn/results/round_results.mhtml?tourn_id=36156&amp;round_id=1363992">
+
+							<span class="half padno marno semibold">
+								Round 3
+							</span>
+							<span class="half rightalign nowrap padno marno">
+								Round results
+							</span>
+						</a>
+						<a class="blue full nowrap" href="/index/tourn/results/round_results.mhtml?tourn_id=36156&amp;round_id=1363991">
+
+							<span class="half padno marno semibold">
+								Round 2
+							</span>
+							<span class="half rightalign nowrap padno marno">
+								Round results
+							</span>
+						</a>
+						<a class="blue full nowrap" href="/index/tourn/results/round_results.mhtml?tourn_id=36156&amp;round_id=1363990">
+
+							<span class="half padno marno semibold">
+								Round 1
+							</span>
+							<span class="half rightalign nowrap padno marno">
+								Round results
+							</span>
+						</a>
+
+		</div>
+
+		<div class="sidenote">
+			<h4>Tiebreakers</h4>
+
+			<p>
+				You can hover your mouse over the title of a tiebreaker column
+				for a fuller explanation of that tiebreaker.
+			</p>
+		</div>
+
+	</div>
+
+
+
+		</div>
+	</div>
+
+			<div id="footer" class="flexrow top centeralign">
+
+				<span class="leftlinks half">
+					<a tabindex="-1" href="https://www.speechanddebate.org/join">Join the NSDA</a>
+
+					<a tabindex="-1" href="https://www.speechanddebate.org/mission">About</a>
+
+					<a tabindex="-1" href="mailto:help@tabroom.com">Help</a>
+
+					<a tabindex="-1" href="https://www.tabroom.com/index/about.mhtml">Contact</a>
+
+					<a tabindex="-1" href="https://www.speechanddebate.org/privacy-policy">Privacy Policy</a>
+
+					<a tabindex="-1" href="https://www.speechanddebate.org/terms-conditions">Terms</a>
+				</span>
+
+
+			</div>
+		</div>
+
+
+
+
+
+
+<div class="alertify-notifier ajs-bottom ajs-left"></div></body></html>
