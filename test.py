@@ -279,7 +279,6 @@ else:
     print(f"No files contain '{value_to_search}'.")
 '''
 
-print(count_tournaments_for_event("output/records", "open"))
+#print(count_tournaments_for_event("output/records", "open"))
 #event_counts = collect_unique_events_from_csvs("output/records")
 #classify_events_by_type(event_counts)
-
