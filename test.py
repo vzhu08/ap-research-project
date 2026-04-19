@@ -267,8 +267,8 @@ def count_tournaments_for_event(folder_path: str, event_value: str) -> Dict[str,
 #compile_column_frequencies("Ev", records_dir="output/records")
 #find_longest_record(records_dir="output/records")
 
-'''
-value_to_search = "NIPDA"
+
+value_to_search = "DCI"
 
 hits = find_ev_in_files(value_to_search, "output/records")
 if hits:
@@ -277,7 +277,7 @@ if hits:
         print("  -", f)
 else:
     print(f"No files contain '{value_to_search}'.")
-'''
+
 
 #print(count_tournaments_for_event("output/records", "open"))
 #event_counts = collect_unique_events_from_csvs("output/records")
