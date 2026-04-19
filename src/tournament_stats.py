@@ -122,7 +122,11 @@ def summarize_tournaments_from_judge_db(
     events_coverage_rows = []
     qualifying_hs_tournaments_by_event: dict[str, set[int]] = defaultdict(set)
     qualifying_hs_rounds_by_event: dict[str, int] = defaultdict(int)
+    excluded_event_tokens = ("LD", "CX", "PAR")
     for event_name, tournament_ids in hs_tournaments_by_event.items():
+        upper_event_name = event_name.upper()
+        if any(token in upper_event_name for token in excluded_event_tokens):
+            continue
         qualified_ids = tournament_ids.intersection(qualifying_tournament_ids)
         if not qualified_ids:
             continue
@@ -132,7 +136,7 @@ def summarize_tournaments_from_judge_db(
 
     ranked_events = sorted(
         qualifying_hs_tournaments_by_event.items(),
-        key=lambda item: (-len(item[1]), -qualifying_hs_rounds_by_event.get(item[0], 0), item[0]),
+        key=lambda item: (-qualifying_hs_rounds_by_event.get(item[0], 0), -len(item[1]), item[0]),
     )
     for event_name, tournament_ids in ranked_events:
         events_coverage_rows.append(

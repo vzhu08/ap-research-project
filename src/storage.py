@@ -320,6 +320,7 @@ class SQLiteDebaterStorage:
                 CREATE TABLE IF NOT EXISTS debater_identity (
                     debater_id TEXT PRIMARY KEY,
                     debater_name TEXT NOT NULL,
+                    race_probability_vector_json TEXT,
                     updated_at TEXT NOT NULL
                 );
 
@@ -386,6 +387,7 @@ class SQLiteDebaterStorage:
             )
         self._ensure_column("debater_failures", "is_resolved", "INTEGER NOT NULL DEFAULT 0")
         self._ensure_column("debater_failures", "resolved_at", "TEXT")
+        self._ensure_column("debater_identity", "race_probability_vector_json", "TEXT")
 
     def _ensure_column(self, table_name: str, column_name: str, column_sql: str) -> None:
         columns = self.conn.execute(f"PRAGMA table_info({table_name})").fetchall()
@@ -545,8 +547,8 @@ class SQLiteDebaterStorage:
             if rows:
                 self.conn.executemany(
                     """
-                    INSERT INTO debater_identity (debater_id, debater_name, updated_at)
-                    VALUES (?, '', ?)
+                    INSERT INTO debater_identity (debater_id, debater_name, race_probability_vector_json, updated_at)
+                    VALUES (?, '', NULL, ?)
                     """,
                     [(str(row["debater_id"]), now_iso) for row in rows],
                 )

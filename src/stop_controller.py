@@ -1,5 +1,6 @@
 import os
 import signal
+import threading
 from datetime import datetime, timezone
 
 
@@ -17,7 +18,8 @@ class StopController:
         self._signal_count = 0
         self._previous_handler = None
 
-        if self.enable_signal_stop and hasattr(signal, "SIGINT"):
+        can_install_signal_handler = threading.current_thread() is threading.main_thread()
+        if self.enable_signal_stop and can_install_signal_handler and hasattr(signal, "SIGINT"):
             self._previous_handler = signal.getsignal(signal.SIGINT)
             signal.signal(signal.SIGINT, self._handle_sigint)
 
@@ -59,4 +61,3 @@ class StopController:
         if self.enable_signal_stop and self._previous_handler is not None and hasattr(signal, "SIGINT"):
             signal.signal(signal.SIGINT, self._previous_handler)
             self._previous_handler = None
-
