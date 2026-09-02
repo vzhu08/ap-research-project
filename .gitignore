@@ -1,0 +1,14 @@
+/.venv/
+/data/
+/output/
+/random/
+/test.py
+/random files/
+.env
+.env.*
+*.env
+secrets.*
+credentials.*
+/.venv/
+/data/
+/output/
